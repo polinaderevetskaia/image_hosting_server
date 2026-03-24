@@ -1,46 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartUploader</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!DOCTYPE html> <!-- тип документа -->
+<html lang="en"> <!-- мова сторінки -->
+<head> <!-- службова частина сторінки-->
+    <meta charset="UTF-8"> <!-- кодування тексту -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- адаптивність для смартфону -->
+    <title>SmartUploader</title> <!-- назва вкладки -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- підключення шрифтів -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- і тут -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-          rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/style.css">
+          rel="stylesheet"> <!-- стиль шрифту -->
+    <link rel="stylesheet" href="/static/css/style.css"> <!-- підключення CSS файлу-->
 </head>
 <body>
 <section class="upload__intro">
-    <h2 class="upload__title">Upload Photos</h2>
-    <p class="upload__description">Upload selfies, memes, or any fun pictures here.</p>
+    <h2 class="upload__title">Upload Photos</h2> <!-- найбільший заголовок -->
+    <p class="upload__description">Upload selfies, memes, or any fun pictures here.</p> <!-- опис в параграфі -->
 </section>
-<nav class="upload__tabs">
-    <button id="upload-tab-btn" class="upload__tab upload__tab--active">Upload Images</button>
-    <button id="images-tab-btn" class="upload__tab">Images List</button>
+<nav class="upload__tabs"> <!-- секція з вкладками -->
+    <button id="upload-tab-btn" class="upload__tab upload__tab--active">Upload Images</button> <!-- реалізація активності кнопки -->
+    <button id="images-tab-btn" class="upload__tab">Images List</button> <!-- сама кнопка -->
 </nav>
-<section class="upload__form">
-    <div class="upload__dropzone">
+<section class="upload__form"> <!-- блок з формою для завантаження фото -->
+    <div class="upload__dropzone"> <!-- місце для перетягування для фоток-->
         <div class="upload__icon">
-            <img src="/static/img/upload-cloud.png" alt="upload icon">
+            <img src="/static/img/upload-cloud.png" alt="upload icon"> <!-- картинка іконки загрузки -->
         </div>
-        <p class="upload__promt">Select a file or drag and drop here</p>
-        <p class="upload__info">Only support .jpg, .png and gif. <br>Maximum file size is 5MB</p>
+        <p class="upload__promt">Select a file or drag and drop here</p> <!-- опис шо треба зробити -->
+        <p class="upload__info">Only support .jpg, .png and gif. <br>Maximum file size is 5MB</p> <!-- умови для завантаження фото -->
     </div>
-    <div class="upload__button">
-        <input type="file" id="file-upload" accept="image/*" style="display: none;" multiple>
-        <label for="file-upload" class="upload__button-btn">Browse your file</label>
+    <div class="upload__button"> <!-- кнопка завантаження-->
+        <input type="file" id="file-upload" accept="image/*" style="display: none;" multiple> <!-- можливість вибору файлу -->
+        <label for="file-upload" class="upload__button-btn">Browse your file</label> <!-- назва кнопки -->
     </div>
-    <div class="upload__container">
+    <div class="upload__container"> <!-- контейнер -->
         <div class="upload__group">
-            <h2 class="upload__title-current">Current Upload</h2>
+            <h2 class="upload__title-current">Current Upload</h2> <!-- заголовок -->
             <div class="upload__label">
-                <input type="text" class="upload__input" placeholder="https://" readonly/>
-                <button class="upload__copy">COPY</button>
+                <input type="text" class="upload__input" placeholder="https://" readonly/> <!-- поле з посиланням на фото -->
+                <button class="upload__copy">COPY</button> <!-- кнопка копіювати посилання -->
             </div>
         </div>
     </div>
 </section>
-<script src="/static/js/upload.js"></script>
+<script src="/static/js/upload.js"></script> <!-- підключення JS файлу-->
 </body>
 </html>

@@ -1,41 +1,41 @@
 services:
-  db:
-    image: postgres:15
+  db: #сервіс бази даних PostgreSQL
+    image: postgres:15 #використовуємо офіційний образ PostgreSQL 15
     env_file:
-      - .env
+      - .env #змінні середовища з файлу .env
     volumes:
-      - db_data:/var/lib/postgresql/data
-      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_data:/var/lib/postgresql/data #зберігаємо дані бази даних у названому томі
+      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql #ініціалізація скрипту для бази даних
     ports:
-      - "5433:5432"
+      - "5433:5432" #проброс порту з хоста на контейнер
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER}" ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER}" ]  #перевірка здоров’я контейнера
+      interval: 5s #інтервал між перевірками
+      timeout: 5s #перерва на виконання перевірки
+      retries: 5 #кількість повторних спроб
 
-  app:
-    build: .
+  app: #сервіс Python аплікації
+    build: . #будуємо образ з Dockerfile в поточній директорії
     env_file:
-      - .env
+      - .env #змінні середовища для додатку
     volumes:
-      - ./images:/images
+      - ./images:/images #підключення локальної папки images в контейнер
     depends_on:
       db:
-        condition: service_healthy
+        condition: service_healthy #очікування поки база даних буде готова
     ports:
-      - "8000:8000"
+      - "8000:8000" #проброс порту для доступу до додатку
 
-  nginx:
-    image: nginx:alpine
+  nginx: #сервіс Nginx для проксі та статичних файлів
+    image: nginx:alpine #легкий образ Nginx
     ports:
-      - "8080:8080"
+      - "8080:8080" #порт для зовнішнього доступу
     volumes:
-      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./images:/images:ro
-      - ./src/static:/app/src/static:ro
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro #конфіг Nginx для читання
+      - ./images:/images:ro #статичні зображення для читання
+      - ./src/static:/app/src/static:ro #статичні файли додатку для читання
     depends_on:
-      - app
+      - app #Nginx залежить від запуску додатку
 
 volumes:
-  db_data:
+  db_data: #названий том для збереження даних PostgreSQL
